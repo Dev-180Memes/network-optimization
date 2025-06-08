@@ -4,6 +4,7 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV FLASK_ENV=production
 
 # Install dependencies
 RUN apt-get update && \
@@ -24,4 +25,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 0-65535
 
 # Default command using gunicorn (Render requires this for Flask)
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "app:app"]
+CMD ["python", "app.py"]
